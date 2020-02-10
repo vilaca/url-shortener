@@ -1,23 +1,25 @@
 import pymongo
-
-client = pymongo.MongoClient("mongodb://192.168.99.100:27017/")
-db = client["short-urls"]
-col = db["short"]
+import os
 
 
 def get(short):
-    r = col.find_one({'key': short})
+    r = coll.find_one({'key': short})
     if r:
         return r['url']
     return None
 
 
 def exists(url):
-    r = col.find_one({'url': url})
+    r = coll.find_one({'url': url})
     if r:
         return r['key']
     return None
 
 
 def create(key, url):
-    col.insert_one({'key': key, 'url': url})
+    coll.insert_one({'key': key, 'url': url})
+
+
+client = pymongo.MongoClient(os.getenv('URL_SHORTENER_DB', 'mongodb://localhost:27017/'))
+db = client["short-urls"]
+coll = db["short"]

@@ -1,0 +1,16 @@
+version: '3'
+services:
+  rest:
+    build: .
+    ports:
+      - "80:5000"
+    environment:
+      URL_SHORTENER_DB: mongodb://db:27017/
+  db:
+    image: mongo:4.2.2
+    ports:
+      - "27017:27017"
+    volumes:
+      - data:/data/db
+volumes:
+  data:

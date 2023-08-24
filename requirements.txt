@@ -1,5 +1,5 @@
 flask==2.3.2
 Flask-RESTful==0.3.8
 pymongo==3.9.0
-uwsgi==2.0.18
+uwsgi==2.0.22
 validators==0.14.2
